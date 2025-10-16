@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const navigate = useNavigate(); 
 
   const categories = [
     { id: 9, name: "General Knowledge" },
@@ -11,6 +13,10 @@ const Home = () => {
 
   const handleCategorySelect = (id) => {
     setSelectedCategory(id);
+  };
+
+  const startQuiz = () => {
+    if (selectedCategory) navigate(`/quiz/${selectedCategory}`);
   };
 
   return (
@@ -49,6 +55,7 @@ const Home = () => {
         </p>
 
         <button
+          onClick={startQuiz}
           disabled={!selectedCategory}
           className={`px-5 py-2 rounded-md text-white font-medium ${
             selectedCategory
