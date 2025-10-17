@@ -49,6 +49,16 @@ const Quiz = () => {
     setSelectedAnswer(answer);
   };
 
+  const handleNext = () => {
+    if (currentIndex < questions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setSelectedAnswer(null);
+    } else {
+      alert("Quiz completed!");
+      navigate("/");
+    }
+  };
+
   if (isLoading) {
     return (
     <div className="min-h-screen flex justify-center items-center bg-blue-50">
@@ -81,6 +91,12 @@ return (
           />
         ))}
       </div>
+
+      <button onClick={handleNext}
+        className="bg-gray-600 text-white px-5 py-2 rounded-md hover:bg-gray-700"
+      >
+        Next Question
+      </button>
     </div>
   </div>
  );
