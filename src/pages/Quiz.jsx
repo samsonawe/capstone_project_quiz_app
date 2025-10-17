@@ -53,7 +53,22 @@ const Quiz = () => {
   );
 };
 
-return <div>Questions Loaded!</div>;
+const current = questions[currentIndex];
+
+return (
+  <div className="min-h-screen flex justify-center items-center bg-blue-50 p-4">
+    <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md sm:max-w-2xl text-center">
+      <h2 className="font-semibold mb-4">{categoryMap[categoryId]} Quiz</h2>
+      <p>
+        Question {currentIndex + 1} of {questions.length}
+      </p>
+      <h3
+        className="font-medium mb-6 text-lg"
+        dangerouslySetInnerHTML={{ __html: current.question }}
+      />
+    </div>
+  </div>
+ );
 };
 
 export default Quiz;
