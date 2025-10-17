@@ -45,6 +45,10 @@ const Quiz = () => {
     fetchQuestions();
   }, [categoryId]);
 
+  const handleAnswer = (answer) => {
+    setSelectedAnswer(answer);
+  };
+
   if (isLoading) {
     return (
     <div className="min-h-screen flex justify-center items-center bg-blue-50">
@@ -66,6 +70,17 @@ return (
         className="font-medium mb-6 text-lg"
         dangerouslySetInnerHTML={{ __html: current.question }}
       />
+      <div className="flex flex-col gap-3 mb-6">
+        {current.options.map((opt, i) => (
+          <button 
+            key={i}
+            onClick={() => handleAnswer(opt)}
+            className={`p-3 rounded-lg border text-left transition ${
+              selectedAnswer === opt ? opt === current.correct ? "bg-green-200 border-green-400" : "bg-red-200 border-red-400" : "bg-gray-100 hover:bg-gray-200 border-gray-300" }`}
+            dangerouslySetInnerHTML={{ __html: opt }}
+          />
+        ))}
+      </div>
     </div>
   </div>
  );
