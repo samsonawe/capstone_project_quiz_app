@@ -62,8 +62,10 @@ const Quiz = () => {
       setSelectedAnswer(null);
       setIsAnswered(false);
     } else {
-      alert("Quiz completed!");
-      navigate("/");
+      // Navigate to Score page
+      navigate("/result", {
+        state: { score, total: questions.length, category: categoryMap[categoryId] },
+      });
     }
   };
 
